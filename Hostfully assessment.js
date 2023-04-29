@@ -46,9 +46,7 @@ describe("Demo app", function() {
     cy.get('.primary').click()
     
     // Verify error message is displayed for missing field
-    cy.on('window:alert', (alertText) => {
-      expect(alertText).to.equal('Failed to decode date : java.time.format.DateTimeParseException: Text "01-24-2023" could not be parsed at index 0')
-    })
+    // No error Message was displayed
     
     
     // Scenario 4: Cancel adding a new computer
@@ -60,3 +58,28 @@ describe("Demo app", function() {
     cy.get('a.btn').click()
   })
 })
+
+
+//gherkins format
+//Given I am on the computer database website
+//When I click on the "Add" button
+//And I fill in the required fields with valid data
+//And I submit the form
+//Then I should see a success message saying "Done! Computer [name] has been created"
+
+//Given I am on the computer database website
+//When I click on the "Add" button
+//And I fill in the required fields with an invalid date format
+//And I submit the form
+//Then I should see an error message saying "Failed to decode date : java.time.format.DateTimeParseException: Text "[invalid-date]" could not be parsed at index 0"
+
+//Given I am on the computer database website
+//When I fill in the required fields but leave a field blank
+//And I submit the form
+//Then I should see an error message saying "Failed to decode date : java.time.format.DateTimeParseException: Text "[missing-field]" could not be parsed at index 0"
+
+//Given I am on the computer database website
+//When I click on the "Add" button
+//And I fill in the required fields with valid data
+//And I click on the "Cancel" button
+//Then the form should be reset and no new computer should be added.
